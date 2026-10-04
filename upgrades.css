@@ -260,6 +260,21 @@ h1, h2,
   font-weight: 600;
   color: var(--ink);
 }
+.writing-featured-card h2 {
+  color: #fff;
+}
+
+.writing-featured-card p {
+  color: #d1d5db;
+}
+
+.writing-featured-card .writing-featured-meta {
+  color: #aeb6c2;
+}
+
+.writing-featured-card .featured-link {
+  color: #fff;
+}
 h3 { font-weight: 600; letter-spacing: -.01em; }
 
 .hero h1 { font-size: clamp(44px, 7vw, 68px); letter-spacing: -.035em; line-height: 1.02; }
