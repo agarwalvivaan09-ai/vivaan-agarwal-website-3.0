@@ -27,6 +27,54 @@
     }
   })();
 
+  /* 1b. Phone menu: a toggle button collapses the nav links on small
+         screens. Without JS the links simply stay visible. */
+  (function phoneMenu() {
+    var nav = document.querySelector("nav");
+    var list = nav && nav.querySelector("ul");
+    if (!nav || !list) return;
+
+    if (!list.id) list.id = "primary-menu";
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "nav-toggle";
+    btn.setAttribute("aria-controls", list.id);
+    btn.setAttribute("aria-expanded", "false");
+    btn.setAttribute("aria-label", "Open menu");
+    btn.innerHTML = '<span class="nav-toggle-bars" aria-hidden="true"></span>';
+    nav.insertBefore(btn, list);
+    nav.classList.add("has-toggle");
+
+    function setOpen(open) {
+      nav.classList.toggle("is-open", open);
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    }
+    btn.addEventListener("click", function () {
+      setOpen(!nav.classList.contains("is-open"));
+    });
+    // Close after choosing a link, on Escape, on outside tap, or when
+    // the screen grows past the phone breakpoint.
+    list.addEventListener("click", function (e) {
+      if (e.target.closest("a")) setOpen(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && nav.classList.contains("is-open")) {
+        setOpen(false);
+        btn.focus();
+      }
+    });
+    document.addEventListener("click", function (e) {
+      if (nav.classList.contains("is-open") && !nav.contains(e.target)) setOpen(false);
+    });
+    if (window.matchMedia) {
+      var mq = window.matchMedia("(min-width: 769px)");
+      var onChange = function () { if (mq.matches) setOpen(false); };
+      if (mq.addEventListener) mq.addEventListener("change", onChange);
+      else if (mq.addListener) mq.addListener(onChange);
+    }
+  })();
+
   /* 2. Safety net: external new-tab links always get noopener */
   (function hardenLinks() {
     var links = document.querySelectorAll('a[target="_blank"]');

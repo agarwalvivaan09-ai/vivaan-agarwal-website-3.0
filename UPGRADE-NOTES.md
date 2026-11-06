@@ -19,9 +19,18 @@
 ## Still needs you
 1. **Zenodo DOI:** I could not read the DOI from the HFRI site (its links are set by JavaScript). In `research-hfri.html`
    find the `<!-- ZENODO: ... -->` comment in the hero and paste your real DOI button there. Also add the DOI to the cite box.
-2. **Email:** the HFRI page uses `agarwalvivaan09@email.com` (the address already on contact.html). Confirm it, then
-   update `contact.html` and `research-hfri.html` together if it is different.
+2. **Email:** done — `contact.html` and `research-hfri.html` now use `agarwalvivaan09@gmail.com`.
 3. `howrah-forgings.html` links to 5 PDFs that are not in the repo (product-report, cost-analysis, calcutta-steel-letter,
    howrah-forgings-letter, howrah-forgings-certificate).
 4. The calculator itself stays on its own site (the pages' security policy blocks embedding it), so it is linked prominently.
 5. Submit `sitemap.xml` in Google Search Console.
+
+## Phone optimisation (iPhone + Android)
+- **Menu:** on screens up to 768px the nav collapses into a ☰ button (added by `script.js`; without JS the links stay visible).
+  The sticky bar went from ~128px tall to ~61px.
+- **Tap targets:** nav links, buttons, footer links and standalone "→" links are at least 44px tall.
+- **No sideways scrolling:** long emails/words wrap; wide HFRI tables scroll inside their own box.
+- **iPhone safe areas:** footer and back-to-top button clear the home indicator; anchor links are not hidden under the sticky nav.
+- **Touch:** no stuck hover lifts after a tap, no double-tap zoom delay on links/buttons.
+- **Home screen:** `apple-touch-icon.png` (iOS), `site.webmanifest` + `icon-192.png`/`icon-512.png` (Android), linked on every page.
+- All of it lives in the "PHONES" block at the end of `upgrades.css`; desktop layout is unchanged.
