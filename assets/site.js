@@ -30,7 +30,7 @@
     var apply = function () { root.setAttribute("data-theme", t); };
     if (doc.startViewTransition && !reduce) doc.startViewTransition(apply); else apply();
     if (save) { try { localStorage.setItem("theme", t); } catch (e) {} }
-    $$('meta[name="theme-color"]').forEach(function (m) { m.setAttribute("content", t === "dark" ? "#0e0e0d" : "#f2efe8"); });
+    $$('meta[name="theme-color"]').forEach(function (m) { m.setAttribute("content", t === "dark" ? "#0a0d14" : "#f7f8fa"); });
   }
   $$("[data-theme-toggle]").forEach(function (b) {
     b.addEventListener("click", function () {

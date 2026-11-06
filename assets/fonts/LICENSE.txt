@@ -1,2 +1,2 @@
 Fonts in this folder are licensed under the SIL Open Font License 1.1:
-Instrument Serif, Inter Tight, Geist Mono, Source Serif 4. Full text: https://openfontlicense.org
+Manrope, IBM Plex Sans, IBM Plex Mono, IBM Plex Serif. Full text: https://openfontlicense.org

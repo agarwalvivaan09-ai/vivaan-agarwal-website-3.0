@@ -1,8 +1,9 @@
 # Redesign notes (v4, branch `redesign`)
 
 ## The new look
-An editorial "research journal meets markets terminal" design: warm paper background (ink-black in dark mode),
-large Instrument Serif headlines, Geist Mono data labels, hairline rules and one signal-orange accent.
+A clean, professional look: cool off-white and deep navy (dark navy in dark mode) with one cobalt-blue accent.
+Type: Manrope (bold headlines), IBM Plex Sans (body), IBM Plex Mono (data, ticker, labels), IBM Plex Serif (essay reading).
+No italic accent words. The home page opens with your photo beside your name.
 Fonts are self-hosted in `assets/fonts/` (SIL Open Font License), so the strict Content-Security-Policy still holds.
 
 ## Files
@@ -20,7 +21,7 @@ Fonts are self-hosted in `assets/fonts/` (SIL Open Font License), so the strict 
 ## New UX
 - ⌘K / Ctrl+K (or "/") search palette across pages, projects and all essays.
 - Light/dark toggle (follows the device until you choose; remembered after).
-- Home: animated chart of the real HFRI savings-strength curve, rotating "Now" line, live ticker of key figures,
+- Home: your photo in the opening section, rotating "Now" line, live ticker of key figures,
   bento grid of selected work with an HFRI score gauge, count-up stats.
 - Work and Writing: filter chips; Writing also has instant search, year groups and reading times.
 - Case studies: fact box, numbered sections, sticky "On this page" contents with scroll-spy, "Next project" card.
