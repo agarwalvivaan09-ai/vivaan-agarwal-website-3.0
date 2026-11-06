@@ -640,3 +640,132 @@ footer { background: var(--surface); border-top: 1px solid var(--border); margin
   .techseva-banner { flex-direction: column; align-items: flex-start; gap: 14px; padding: 22px; }
   .techseva-banner img { width: 64px; height: 64px; }
 }
+
+
+/* =========================================================
+   PHONES (iPhone + Android) — touch, menu, safe areas
+   ========================================================= */
+
+/* Touch behaviour everywhere */
+html { -webkit-tap-highlight-color: rgba(14,23,38,.08); }
+a, button, summary, label { touch-action: manipulation; }
+img, svg, video, iframe { max-width: 100%; height: auto; }
+pre, code { overflow-wrap: anywhere; }
+pre { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.hfri-details .detail-body { -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
+
+/* Menu toggle (inserted by script.js) — hidden on desktop */
+.nav-toggle { display: none; }
+
+@media (max-width: 768px) {
+  /* Compact sticky bar: brand left, menu button right */
+  nav,
+  nav.has-toggle {
+    flex-wrap: wrap;
+    padding: 8px max(16px, env(safe-area-inset-right)) 8px max(16px, env(safe-area-inset-left));
+    row-gap: 0;
+  }
+  .nav-brand a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  nav.has-toggle .nav-toggle {
+    display: inline-grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin-right: -8px;
+    padding: 0;
+    border: 0;
+    border-radius: 12px;
+    background: transparent;
+    color: var(--ink, #111);
+    cursor: pointer;
+  }
+  .nav-toggle-bars,
+  .nav-toggle-bars::before,
+  .nav-toggle-bars::after {
+    display: block;
+    width: 20px;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+    transition: transform .25s ease, opacity .2s ease;
+  }
+  .nav-toggle-bars { position: relative; }
+  .nav-toggle-bars::before,
+  .nav-toggle-bars::after { content: ""; position: absolute; left: 0; }
+  .nav-toggle-bars::before { top: -6px; }
+  .nav-toggle-bars::after  { top: 6px; }
+  nav.is-open .nav-toggle-bars { background: transparent; }
+  nav.is-open .nav-toggle-bars::before { transform: translateY(6px) rotate(45deg); }
+  nav.is-open .nav-toggle-bars::after  { transform: translateY(-6px) rotate(-45deg); }
+
+  /* Collapsed list → full-width drop-down panel */
+  nav.has-toggle ul {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 2px;
+    padding: 6px 0 10px;
+    margin: 0;
+  }
+  nav.has-toggle.is-open ul { display: flex; }
+  nav.has-toggle ul a {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 0 14px;
+    font-size: 16px;
+    border-radius: 12px;
+  }
+
+  /* No-JS fallback: links stay visible, with real tap targets */
+  nav:not(.has-toggle) ul a { min-height: 44px; display: inline-flex; align-items: center; }
+
+  /* Comfortable tap targets for buttons and inline "→" links */
+  .button, .btn, .cta a, .certificate-btn, .research-actions a,
+  .techseva-banner-go { min-height: 44px; }
+  .featured-link, .footer-links a, .case-links a,
+  :where(div, article, section) > a:where(:not([class])) {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .footer-links { column-gap: 18px; row-gap: 0; }
+
+  /* Long words / emails never push the page sideways */
+  .contact-links a { grid-template-columns: 80px minmax(0, 1fr) 20px; }
+  .contact-value, .link-go, .cite-box, .article { overflow-wrap: anywhere; min-width: 0; }
+
+  /* Hint that wide tables scroll */
+  .hfri-details .detail-body { padding: 0 16px 16px; }
+
+  /* Footer + floating button clear the iPhone home indicator */
+  footer { padding-bottom: env(safe-area-inset-bottom); }
+  .back-to-top {
+    right: max(14px, env(safe-area-inset-right));
+    bottom: calc(14px + env(safe-area-inset-bottom));
+  }
+
+  /* Sticky nav must not hide in-page anchor targets */
+  [id] { scroll-margin-top: 76px; }
+}
+
+@media (max-width: 380px) {
+  .hero h1 { font-size: 38px; }
+  .about-header h1, .contact h1 { font-size: 36px; }
+  .projects-title, .writing-header h1, .case-hero h1 { font-size: 34px; }
+  .contact-links a { grid-template-columns: 1fr 20px; }
+  .contact-links a .contact-label { grid-column: 1 / -1; }
+}
+
+/* Touch screens: no "stuck" hover lifts after a tap */
+@media (hover: none) {
+  .link-card:hover, .techseva-banner:hover,
+  .area-card:hover, .featured-card:hover,
+  .project-card:hover, .writing-card:hover { transform: none; }
+}
