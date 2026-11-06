@@ -608,3 +608,35 @@ footer { background: var(--surface); border-top: 1px solid var(--border); margin
 }
 
 .research-feature .role { margin-bottom: 16px; }
+
+
+/* =========================================================
+   TechSeva website banner (techseva.html)
+   ========================================================= */
+.techseva-banner {
+  display: flex; align-items: center; gap: 24px;
+  margin: 8px 0 56px; padding: 26px 28px; scroll-margin-top: 80px;
+  border-radius: 18px; text-decoration: none; color: #e8eaf6;
+  background:
+    radial-gradient(420px 200px at 100% 0%, rgba(255,111,181,.22), transparent 70%),
+    radial-gradient(420px 200px at 0% 100%, rgba(107,228,255,.18), transparent 70%),
+    linear-gradient(135deg, #070b24, #141c52 55%, #2a0b33);
+  border: 1px solid rgba(140,150,255,.3);
+  box-shadow: 0 20px 50px -24px rgba(42,11,51,.7);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.techseva-banner:hover { transform: translateY(-3px); box-shadow: 0 28px 60px -24px rgba(42,11,51,.85); color: #fff; }
+.techseva-banner img { width: 88px; height: 88px; flex: none; }
+.techseva-banner-text { display: grid; gap: 4px; flex: 1; font-size: 15px; line-height: 1.55; color: #a3a9cc; }
+.techseva-banner-text strong { font-size: 20px; color: #fff; letter-spacing: -.01em; }
+.techseva-banner-label { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #6be4ff; }
+.techseva-banner-go {
+  flex: none; padding: 11px 18px; border-radius: 9px; font-size: 14px; font-weight: 600; color: #0a0b1a;
+  background: linear-gradient(100deg, #6be4ff, #8b84ff 40%, #c87bff 70%, #ff6fb5);
+}
+.techseva-final { margin: 48px 0 20px; font-size: 16px; }
+.techseva-final a { font-weight: 600; }
+@media (max-width: 640px) {
+  .techseva-banner { flex-direction: column; align-items: flex-start; gap: 14px; padding: 22px; }
+  .techseva-banner img { width: 64px; height: 64px; }
+}
