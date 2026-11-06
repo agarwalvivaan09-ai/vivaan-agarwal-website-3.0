@@ -1213,3 +1213,27 @@ h1, h2, .page-hero h1, .case-hero h1, .section-head h2 { color: #fff; }
 .contact-rows .arr { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: var(--on-accent); transition: transform .3s var(--ease); }
 .contact-rows a:hover .arr { transform: rotate(-45deg); }
 .contact-rows .v { color: #fff; }
+
+/* =====================================================================
+   DESKTOP HERO — calmer, mirrors the phone layout (phones unchanged)
+   ===================================================================== */
+@media (min-width: 861px) {
+  .scene { --sun-x: 74%; }
+  .scene-content {
+    grid-template-columns: minmax(0, 760px); gap: 20px;
+    padding-bottom: calc(min(calc(100svh - var(--header-h)), 960px) * .26);
+  }
+  .porthole {
+    order: -1; width: 112px; aspect-ratio: 1; border-radius: 50%;
+    border: 2px solid rgba(175,221,229,.45);
+    box-shadow: 0 0 0 6px rgba(0,49,53,.4), 0 20px 50px -16px rgba(0,10,12,.9);
+    transform: none; margin-bottom: -4px;
+  }
+  .porthole::after { display: none; }
+  .scene .hero-title { font-size: clamp(72px, 8.4vw, 132px); }
+  .scene .lead { margin-top: 12px; font-size: 21px; }
+  .scene .links { margin-top: 26px; }
+  .sun { top: 53%; }
+  .glint { opacity: .45; }
+}
+.glow { display: none !important; }
