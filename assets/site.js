@@ -244,7 +244,7 @@
 
   /* ---------- Tile spotlight ---------- */
   if (window.matchMedia && matchMedia("(hover: hover)").matches) {
-    $$(".tile").forEach(function (t) {
+    $$(".tile, .project").forEach(function (t) {
       t.addEventListener("pointermove", function (e) {
         var r = t.getBoundingClientRect();
         t.style.setProperty("--mx", (e.clientX - r.left) + "px");
@@ -340,6 +340,48 @@
       navigator.share({ title: doc.title, url: location.href }).catch(function () {});
     });
   });
+
+  /* ---------- Midnight-sun scene ---------- */
+  $$(".stars i").forEach(function (st) {
+    st.style.left = st.getAttribute("data-x") + "%";
+    st.style.top = st.getAttribute("data-y") + "%";
+    st.style.animationDelay = st.getAttribute("data-d") + "s";
+  });
+  var scene = $("[data-scene]");
+  if (scene && !reduce) {
+    var tx = 0, ty = 0, cx = 0, cy = 0, raf = null;
+    var loop = function () {
+      cx += (tx - cx) * .06; cy += (ty - cy) * .06;
+      scene.style.setProperty("--px", cx.toFixed(3));
+      scene.style.setProperty("--py", cy.toFixed(3));
+      raf = (Math.abs(tx - cx) > .001 || Math.abs(ty - cy) > .001) ? requestAnimationFrame(loop) : null;
+    };
+    var kick = function () { if (!raf) raf = requestAnimationFrame(loop); };
+    scene.addEventListener("pointermove", function (e) {
+      var r = scene.getBoundingClientRect();
+      tx = (e.clientX - r.left) / r.width * 2 - 1; ty = (e.clientY - r.top) / r.height * 2 - 1; kick();
+    });
+    scene.addEventListener("pointerleave", function () { tx = 0; ty = 0; kick(); });
+    var onSceneScroll = function () {
+      var h = scene.offsetHeight || 1;
+      scene.style.setProperty("--sy", Math.min(1, Math.max(0, window.pageYOffset / h)).toFixed(3));
+    };
+    window.addEventListener("scroll", onSceneScroll, { passive: true });
+    onSceneScroll();
+  }
+
+  /* ---------- Cursor glow ---------- */
+  if (!reduce && window.matchMedia && matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    var glow = doc.createElement("div"); glow.className = "glow"; glow.setAttribute("aria-hidden", "true"); body.appendChild(glow);
+    var gx = innerWidth / 2, gy = innerHeight / 2, mx = gx, my = gy, gr = null;
+    var gloop = function () {
+      gx += (mx - gx) * .12; gy += (my - gy) * .12;
+      glow.style.transform = "translate3d(" + gx.toFixed(1) + "px," + gy.toFixed(1) + "px,0)";
+      gr = (Math.abs(mx - gx) > .5 || Math.abs(my - gy) > .5) ? requestAnimationFrame(gloop) : null;
+    };
+    doc.addEventListener("pointermove", function (e) { mx = e.clientX; my = e.clientY; glow.classList.add("is-on"); if (!gr) gr = requestAnimationFrame(gloop); }, { passive: true });
+    doc.documentElement.addEventListener("pointerleave", function () { glow.classList.remove("is-on"); });
+  }
 
   /* ---------- Kolkata clock ---------- */
   var clock = $("[data-clock]");
