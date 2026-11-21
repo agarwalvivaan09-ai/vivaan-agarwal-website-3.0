@@ -39,7 +39,7 @@ window.SITE_INDEX = [
 "g": "Work",
 "t": "Household Financial Resilience Index",
 "s": "Research · Quantitative research",
-"k": "A transparent 0–100 index of how much of a financial shock a household can absorb, with a public calculator, paper and code. Implemented into Arbor. Index construction Simulation Sensitivity analysis HFRI",
+"k": "A transparent 0–100 index of how much of a financial shock a household can absorb, with a public calculator, paper and code. Tested on 12,000+ real families. Implemented into Arbor. Index construction Simulation Validation Survey of Consumer Finances HFRI",
 "u": "research-hfri.html",
 "m": "HFRI",
 "p": 5
@@ -295,7 +295,7 @@ window.SITE_INDEX = [
 "g": "Elsewhere",
 "t": "HFRI paper (PDF)",
 "s": "Full methodology and results",
-"u": "Household_Financial_Resilience_Index_Vivaan_Agarwal.pdf",
+"u": "Household_Financial_Resilience_Index_Revised.pdf",
 "p": 3
 }
 ];
